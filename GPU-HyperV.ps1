@@ -39,7 +39,7 @@ $GpuInfDirs = $GpuInfDirs | Where-Object {(Split-Path $_ -Leaf ).StartsWith("nv"
 $s = New-PSSession -VMName $vm -Credential (Get-Credential)
 
 # Copia (Pasta e Arquivos coletados de $GpuDllPaths) nv_dispi.inf_amd64 para a VM.
-$GpuInfDirs | ForEach-Object { Copy-Item -ToSession $s -Path $_ -Destination C:\Windows\System32\HostDriverStore\FileRepository\ -Recurse -Force }
+$GpuInfDirs | ForEach-Object { Copy-Item -ToSession $s -Path $_ -Destination C:\Windows\System32\DriverStore\FileRepository\ -Recurse -Force }
 
 # Copia o nvapi64.dll para a VM
 Copy-Item -ToSession $s -Path C:\Windows\System32\nv*.dll -Destination C:\Windows\System32\
